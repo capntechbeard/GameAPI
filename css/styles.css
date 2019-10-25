@@ -1,0 +1,63 @@
+.gameCard {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  border: black solid 0.25em;
+  border-radius: 1em;
+  flex-direction: column;
+  max-width: 500px;
+}
+
+.gameCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameCardIcon {
+  border-radius: 1em;
+  border: black solid 0.25em;
+  width: 100px;
+  height: 100px;
+  margin: 0.5em;
+}
+
+.gameCardInfoShort {
+  background: red;
+  min-width: 200px;
+  flex-grow: 1;
+  padding: 0.5em;
+  align-self: stretch;
+}
+
+.gameCardInfoLong {
+  background: chartreuse;
+  padding: 0.5em;
+}
+
+.gameTitle {
+  text-align: center;
+}
+.dummyTag {
+  width: 64px;
+  height: 24px;
+  border: black solid;
+  border-radius: 0.5em;
+  text-align: center;
+  display: inline;
+  margin-right: 6px;
+}
+
+div,
+h1,
+h2,
+h3,
+h4 {
+  display: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0.1em;
+}
