@@ -1,9 +1,6 @@
-body {
-  background-image: url("https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg");
-}
-
 .App {
   text-align: center;
+  background-image: url("https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg");
 }
 
 .App-logo {
@@ -23,10 +20,13 @@ body {
 .Outer-wrapper {
   background-size: cover;
   background-position: center;
+  border-radius: 2em;
 }
 
 .Inner-wrapper {
   background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2em;
+  padding: 2em;
 }
 
 .App-link {
@@ -38,7 +38,7 @@ body {
   margin: 0;
   text-align: left;
 }
-body:before {
+.App:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -53,6 +53,28 @@ body:before {
   -moz-transition: all 2s linear;
   -webkit-transition: all 2s linear;
   -o-transition: all 2s linear;
+}
+
+.Nav-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.Nav-bar span {
+  font-family: monospace;
+  color: #b0b0b0;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: gray 2px solid;
+  border-radius: 8px;
+  padding: 0.4em 0.7em 0.5em 0.7em;
+  background-color: #333;
+}
+
+.Nav-bar span:hover {
+  border: #d1d1d1 2px solid;
+  background-color: #444;
+  color: #c0c0c0;
 }
 
 div,

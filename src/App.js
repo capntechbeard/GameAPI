@@ -1,6 +1,9 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { GameDetailView, GameListView, Navbar } from "./components/index.js";
+// import { Navbar } from "./components/Navbar.js";
+// import { GameDetailView } from "./components/GameDetailView.js";
+// import { GameListView } from "./components/GameListView.js";
+import "./styles/App.css";
 
 class App extends React.Component {
   constructor(props) {
@@ -9,10 +12,6 @@ class App extends React.Component {
   }
   componentDidMount() {
     this.getGameDetail();
-  }
-
-  getRandomGame(randomGame) {
-    var chars;
   }
 
   getGameDetail = () => {
@@ -72,26 +71,23 @@ class App extends React.Component {
     const background_image = this.state.background_image;
     const website = this.state.website;
     const parent_platforms = this.state.parent_platforms;
-    const outerWrapperStyle = {
-      backgroundImage: "url(" + background_image + ")"
-    };
-
+    // const fadedBackgroundStyle = {
+    //   backgroundImage: "url(" + background_image + ")"
+    // };
     return (
       <div className="App">
-        <div className="Blur-wrapper" />
-        <header className="App-header">
-          <div className="Outer-wrapper" style={outerWrapperStyle}>
-            <div className="Inner-wrapper">
-              <h2>{name}</h2>
-              <h3>{metacritic}</h3>
-              {rating > 0 && <h3>{rating}</h3>}
-
-              <p>Released: {released}</p>
-              <div dangerouslySetInnerHTML={{ __html: description }} />
-              <a>{website}</a>
-            </div>
-          </div>
-        </header>
+        <Navbar />
+        <GameDetailView
+          name={name}
+          description={description}
+          metacritic={metacritic}
+          rating={rating}
+          released={released}
+          background_image={background_image}
+          website={website}
+          parent_platforms={parent_platforms}
+        />
+        <GameListView />
       </div>
     );
   }
