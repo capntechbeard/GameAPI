@@ -1,4 +1,6 @@
 .App {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   background-image: url("https://media.rawg.io/media/games/b11/b115b2bc6a5957a917bc7601f4abdda2.jpg");
 }
@@ -8,13 +10,21 @@
 }
 
 .App-header {
-  min-height: 100vh;
+  min-height: 1vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 0 15%;
   color: white;
+}
+
+.List-nodes {
+  padding: 0 15%;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .Outer-wrapper {
@@ -24,6 +34,17 @@
 }
 
 .Inner-wrapper {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2em;
+  padding: 2em;
+}
+
+.Outer-list-wrapper {
+  border-radius: 2em;
+  background-size: cover;
+}
+
+.Inner-list-wrapper {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 2em;
   padding: 2em;

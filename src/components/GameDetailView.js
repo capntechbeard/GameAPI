@@ -8,6 +8,7 @@ export const GameDetailView = props => {
   const released = props.released;
   const background_image = props.background_image;
   const website = props.website;
+  const clip = props.clip;
   // const parent_platforms = props.parent_platforms;
   const outerWrapperStyle = {
     backgroundImage: "url(" + background_image + ")"
@@ -28,6 +29,7 @@ export const GameDetailView = props => {
 
             <p>Released: {released}</p>
             <div dangerouslySetInnerHTML={{ __html: description }} />
+            {clip && <video width="320" height="240" src={clip} controls />}
             <a>{website}</a>
           </div>
         </div>

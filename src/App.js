@@ -12,6 +12,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     this.getGameDetail();
+    this.getGameList();
   }
 
   getGameDetail = () => {
@@ -19,7 +20,7 @@ class App extends React.Component {
     // var max = 364944; //Max results from RAWG.api
 
     var min = 3000; //More useable range of data
-    var max = 4000; //Many games have missing values
+    var max = 3500; //Many games have missing values
 
     var random = Math.floor(Math.random() * (+max - +min)) + +min;
     document.write("Random Number Generated : " + random);
@@ -27,6 +28,7 @@ class App extends React.Component {
 
     const url = "https://api.rawg.io/api/games/" + randomString; //Random Result
     // const url = "https://api.rawg.io/api/games/3498"; //GTA5
+    // const url = "https://api.rawg.io/api/games/3328"; //The Witcher 3
 
     function httpGetAsync(theUrl, callback) {
       var xmlHttp = new XMLHttpRequest();
@@ -48,6 +50,8 @@ class App extends React.Component {
       const background_image = data.background_image;
       const website = data.website;
       const parent_platforms = data.parent_platforms;
+      const clip = data.clip && data.clip.clip;
+      console.log(data);
 
       this.setState({
         name: name,
@@ -57,9 +61,70 @@ class App extends React.Component {
         released: released,
         background_image: background_image,
         website: website,
-        parent_platforms: parent_platforms
+        parent_platforms: parent_platforms,
+        clip: clip
       });
     });
+  };
+
+  getGameList = () => {
+    const url = "https://api.rawg.io/api/games?page_size=40";
+
+    function httpGetAsync(theUrl, callback) {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+          callback(xmlHttp.responseText);
+      };
+      xmlHttp.open("GET", theUrl, true); // true for asynchronous
+      xmlHttp.send(null);
+    }
+
+    httpGetAsync(url, response => {
+      const data = JSON.parse(response);
+      const results = data.results;
+      console.log(results.length);
+      const filteredResults = data.results.filter(result => {
+        if (result.clip) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      const nodes = filteredResults.map(result => {
+        return this.createGamesListNode(result);
+      });
+      console.log(results);
+      console.log(nodes);
+      this.setState({
+        gameListNodes: nodes
+      });
+    });
+  };
+
+  createGamesListNode = game => {
+    const name = game.name;
+    const metacritic = game.metacritic;
+    const rating = game.rating;
+    const released = game.released;
+    const icon = game.background_image;
+    const website = game.website;
+    const parent_platforms = game.parent_platforms;
+    return (
+      <GameListView
+        name={name}
+        metacritic={metacritic}
+        rating={rating}
+        released={released}
+        icon={icon}
+        parent_platforms={parent_platforms}
+        onClick={() => this.showGameDetail(name)}
+      />
+    );
+  };
+
+  showGameDetail = game => {
+    console.log("game clicked", game);
   };
 
   render() {
@@ -71,12 +136,15 @@ class App extends React.Component {
     const background_image = this.state.background_image;
     const website = this.state.website;
     const parent_platforms = this.state.parent_platforms;
+    const clip = this.state.clip;
+    const gameListNodes = this.state.gameListNodes;
     // const fadedBackgroundStyle = {
     //   backgroundImage: "url(" + background_image + ")"
     // };
     return (
       <div className="App">
         <Navbar />
+        <div className="List-nodes">{gameListNodes}</div>
         <GameDetailView
           name={name}
           description={description}
@@ -86,8 +154,8 @@ class App extends React.Component {
           background_image={background_image}
           website={website}
           parent_platforms={parent_platforms}
+          clip={clip}
         />
-        <GameListView />
       </div>
     );
   }
