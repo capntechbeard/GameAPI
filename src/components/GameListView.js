@@ -2,6 +2,7 @@ import React from "react";
 
 export const GameListView = props => {
   const name = props.name;
+  const id = props.id;
   const description = props.description;
   const metacritic = props.metacritic;
   const rating = props.rating;
@@ -27,6 +28,7 @@ export const GameListView = props => {
         <h2>{name}</h2>
         <h3>{metacritic}</h3>
         {rating > 0 && <h3>{rating}</h3>}
+        {id}
 
         <p>Released: {released}</p>
         <a>{website}</a>

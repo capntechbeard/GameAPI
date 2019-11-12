@@ -8,25 +8,28 @@ import "./styles/App.css";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showDetail: false
+    };
   }
   componentDidMount() {
-    this.getGameDetail();
     this.getGameList();
   }
 
-  getGameDetail = () => {
+  getGameDetail = gameID => {
+    if (!gameID) {
+      return;
+    }
     // var min = 1;      //Min result
     // var max = 364944; //Max results from RAWG.api
 
-    var min = 3000; //More useable range of data
-    var max = 3500; //Many games have missing values
+    // var min = 3000; //More useable range of data
+    // var max = 3500; //Many games have missing values
 
-    var random = Math.floor(Math.random() * (+max - +min)) + +min;
-    document.write("Random Number Generated : " + random);
-    var randomString = random.toString();
+    // var random = Math.floor(Math.random() * (+max - +min)) + +min;
+    // var randomString = random.toString();
 
-    const url = "https://api.rawg.io/api/games/" + randomString; //Random Result
+    const url = "https://api.rawg.io/api/games/" + gameID; //Random Result
     // const url = "https://api.rawg.io/api/games/3498"; //GTA5
     // const url = "https://api.rawg.io/api/games/3328"; //The Witcher 3
 
@@ -43,6 +46,7 @@ class App extends React.Component {
     httpGetAsync(url, text => {
       const data = JSON.parse(text);
       const name = data.name;
+      const id = data.id;
       const description = data.description;
       const metacritic = data.metacritic;
       const rating = data.rating;
@@ -55,6 +59,7 @@ class App extends React.Component {
 
       this.setState({
         name: name,
+        id: id,
         description: description,
         metacritic: metacritic,
         rating: rating,
@@ -62,7 +67,8 @@ class App extends React.Component {
         background_image: background_image,
         website: website,
         parent_platforms: parent_platforms,
-        clip: clip
+        clip: clip,
+        showDetail: true
       });
     });
   };
@@ -104,6 +110,7 @@ class App extends React.Component {
 
   createGamesListNode = game => {
     const name = game.name;
+    const id = game.id;
     const metacritic = game.metacritic;
     const rating = game.rating;
     const released = game.released;
@@ -113,18 +120,23 @@ class App extends React.Component {
     return (
       <GameListView
         name={name}
+        id={id}
         metacritic={metacritic}
         rating={rating}
         released={released}
         icon={icon}
         parent_platforms={parent_platforms}
-        onClick={() => this.showGameDetail(name)}
+        onClick={() => this.getGameDetail(id)}
       />
     );
   };
 
-  showGameDetail = game => {
-    console.log("game clicked", game);
+  showGameDetail = id => {
+    console.log("game clicked", id);
+  };
+
+  hideGameDetail = () => {
+    this.setState({ showDetail: false });
   };
 
   render() {
@@ -138,24 +150,25 @@ class App extends React.Component {
     const parent_platforms = this.state.parent_platforms;
     const clip = this.state.clip;
     const gameListNodes = this.state.gameListNodes;
-    // const fadedBackgroundStyle = {
-    //   backgroundImage: "url(" + background_image + ")"
-    // };
+    const showDetail = this.state.showDetail;
     return (
       <div className="App">
         <Navbar />
-        <div className="List-nodes">{gameListNodes}</div>
-        <GameDetailView
-          name={name}
-          description={description}
-          metacritic={metacritic}
-          rating={rating}
-          released={released}
-          background_image={background_image}
-          website={website}
-          parent_platforms={parent_platforms}
-          clip={clip}
-        />
+        {!showDetail && <div className="List-nodes">{gameListNodes}</div>}
+        {showDetail && (
+          <GameDetailView
+            name={name}
+            description={description}
+            metacritic={metacritic}
+            rating={rating}
+            released={released}
+            background_image={background_image}
+            website={website}
+            parent_platforms={parent_platforms}
+            clip={clip}
+            hideGameDetail={this.hideGameDetail}
+          />
+        )}
       </div>
     );
   }

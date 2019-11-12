@@ -9,6 +9,7 @@ export const GameDetailView = props => {
   const background_image = props.background_image;
   const website = props.website;
   const clip = props.clip;
+  const hideGameDetail = props.hideGameDetail;
   // const parent_platforms = props.parent_platforms;
   const outerWrapperStyle = {
     backgroundImage: "url(" + background_image + ")"
@@ -19,7 +20,7 @@ export const GameDetailView = props => {
 
   return (
     <div>
-      <div className="Blur-wrapper" />
+      <button onClick={hideGameDetail} />
       <header className="App-header">
         <div className="Outer-wrapper" style={outerWrapperStyle}>
           <div className="Inner-wrapper">

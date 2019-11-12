@@ -25,29 +25,40 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: center;
 }
 
 .Outer-wrapper {
   background-size: cover;
   background-position: center;
   border-radius: 2em;
+  display: flex;
 }
 
 .Inner-wrapper {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 2em;
   padding: 2em;
+  flex: 1;
 }
 
 .Outer-list-wrapper {
+  display: flex;
   border-radius: 2em;
   background-size: cover;
+  margin: 0.2em 0.2em;
 }
 
 .Inner-list-wrapper {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 2em;
   padding: 2em;
+  min-width: 18em;
+  max-width: 18em;
+}
+
+.Inner-list-wrapper:hover {
+  background-color: rgba(11, 56, 20, 0.5);
 }
 
 .App-link {
