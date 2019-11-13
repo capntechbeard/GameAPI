@@ -31,7 +31,6 @@ export const GameListView = props => {
         {id}
 
         <p>Released: {released}</p>
-        <a>{website}</a>
       </div>
     </div>
   );

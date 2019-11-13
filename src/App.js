@@ -1,5 +1,10 @@
 import React from "react";
-import { GameDetailView, GameListView, Navbar } from "./components/index.js";
+import {
+  GameDetailView,
+  GameListView,
+  Navbar,
+  QueryBar
+} from "./components/index.js";
 // import { Navbar } from "./components/Navbar.js";
 // import { GameDetailView } from "./components/GameDetailView.js";
 // import { GameListView } from "./components/GameListView.js";
@@ -18,16 +23,14 @@ class App extends React.Component {
 
   getGameDetail = gameID => {
     if (!gameID) {
-      return;
+      // var max = 364944; //Max results from RAWG.api
+
+      var min = 3000; //More useable range of data
+      var max = 3500; //Many games have missing values
+
+      var random = Math.floor(Math.random() * (+max - +min)) + +min;
+      gameID = random.toString();
     }
-    // var min = 1;      //Min result
-    // var max = 364944; //Max results from RAWG.api
-
-    // var min = 3000; //More useable range of data
-    // var max = 3500; //Many games have missing values
-
-    // var random = Math.floor(Math.random() * (+max - +min)) + +min;
-    // var randomString = random.toString();
 
     const url = "https://api.rawg.io/api/games/" + gameID; //Random Result
     // const url = "https://api.rawg.io/api/games/3498"; //GTA5
@@ -73,8 +76,17 @@ class App extends React.Component {
     });
   };
 
+  handleGenreChange = event => {
+    console.log(event.target.value);
+    this.setState({ selectedGenre: event.target.value });
+  };
+
   getGameList = () => {
-    const url = "https://api.rawg.io/api/games?page_size=40";
+    let url = "https://api.rawg.io/api/games?page_size=40";
+    const selectedGenre = this.state.selectedGenre;
+    if (selectedGenre) {
+      url = url + "&genres=" + selectedGenre;
+    }
 
     function httpGetAsync(theUrl, callback) {
       var xmlHttp = new XMLHttpRequest();
@@ -85,11 +97,12 @@ class App extends React.Component {
       xmlHttp.open("GET", theUrl, true); // true for asynchronous
       xmlHttp.send(null);
     }
+    console.log(url);
 
     httpGetAsync(url, response => {
       const data = JSON.parse(response);
+      console.log(data);
       const results = data.results;
-      console.log(results.length);
       const filteredResults = data.results.filter(result => {
         if (result.clip) {
           return true;
@@ -100,10 +113,9 @@ class App extends React.Component {
       const nodes = filteredResults.map(result => {
         return this.createGamesListNode(result);
       });
-      console.log(results);
-      console.log(nodes);
       this.setState({
-        gameListNodes: nodes
+        gameListNodes: nodes,
+        showDetail: false
       });
     });
   };
@@ -151,9 +163,14 @@ class App extends React.Component {
     const clip = this.state.clip;
     const gameListNodes = this.state.gameListNodes;
     const showDetail = this.state.showDetail;
+    const selectedGenre = this.state.selectedGenre;
     return (
       <div className="App">
-        <Navbar />
+        <Navbar onClickRandom={() => this.getGameDetail()} />
+        <QueryBar
+          handleGenreChange={this.handleGenreChange}
+          handleSearch={() => this.getGameList()}
+        />
         {!showDetail && <div className="List-nodes">{gameListNodes}</div>}
         {showDetail && (
           <GameDetailView
