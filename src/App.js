@@ -61,16 +61,16 @@ class App extends React.Component {
       console.log(data);
 
       this.setState({
-        name: name,
-        id: id,
-        description: description,
-        metacritic: metacritic,
-        rating: rating,
-        released: released,
-        background_image: background_image,
-        website: website,
-        parent_platforms: parent_platforms,
-        clip: clip,
+        name,
+        id,
+        description,
+        metacritic,
+        rating,
+        released,
+        background_image,
+        website,
+        parent_platforms,
+        clip,
         showDetail: true
       });
     });
@@ -152,18 +152,20 @@ class App extends React.Component {
   };
 
   render() {
-    const name = this.state.name;
-    const description = this.state.description;
-    const metacritic = this.state.metacritic;
-    const rating = this.state.rating;
-    const released = this.state.released;
-    const background_image = this.state.background_image;
-    const website = this.state.website;
-    const parent_platforms = this.state.parent_platforms;
-    const clip = this.state.clip;
-    const gameListNodes = this.state.gameListNodes;
-    const showDetail = this.state.showDetail;
-    const selectedGenre = this.state.selectedGenre;
+    const {
+      background_image,
+      clip,
+      description,
+      gameListNodes,
+      metacritic,
+      name,
+      parent_platforms,
+      rating,
+      released,
+      showDetail,
+      website
+    } = this.state;
+
     return (
       <div className="App">
         <Navbar onClickRandom={() => this.getGameDetail()} />
