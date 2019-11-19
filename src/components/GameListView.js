@@ -1,5 +1,7 @@
 import React from "react";
 
+import { createPlatformNodes } from "../lib/utility";
+
 export const GameListView = props => {
   const name = props.name;
   const id = props.id;
@@ -7,21 +9,9 @@ export const GameListView = props => {
   const rating = props.rating;
   const released = props.released;
   const icon = props.icon;
+
   const platforms = props.parent_platforms;
-
-  // const TEST = ({ platforms }) => (
-  //   <>
-  //     {platforms.map(platform => (
-  //       <div className="platform" key={platform.call}>
-  //         {platform.call}
-  //       </div>
-  //     ))}
-  //   </>
-  // );
-
-  console.log("<====platforms====>");
-  console.log(TEST);
-  console.log("<====platforms====>");
+  const platformNodes = createPlatformNodes(platforms);
 
   const outerWrapperStyle = {
     backgroundImage: "url(" + icon + ")"
@@ -41,9 +31,8 @@ export const GameListView = props => {
         <h2>{name}</h2>
         <h3>{metacritic}</h3>
         {rating > 0 && <h3>{rating}</h3>}
-        {id}
         <br />
-        {/* {TEST} */}
+        {platformNodes}
         <p>Released: {released}</p>
       </div>
     </div>

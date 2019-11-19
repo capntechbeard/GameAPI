@@ -1,4 +1,8 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
+import { faDesktop } from "@fortawesome/free-solid-svg-icons";
+import { createPlatformNodes } from "../lib/utility";
 
 export const GameDetailView = props => {
   const name = props.name;
@@ -10,13 +14,13 @@ export const GameDetailView = props => {
   const website = props.website;
   const clip = props.clip;
   const hideGameDetail = props.hideGameDetail;
-  // const parent_platforms = props.parent_platforms;
+
+  const platforms = props.parent_platforms;
+  const platformNodes = createPlatformNodes(platforms);
+
   const outerWrapperStyle = {
     backgroundImage: "url(" + background_image + ")"
   };
-  // const fadedBackgroundStyle = {
-  //   backgroundImage: "url(" + background_image + ")"
-  // };
 
   return (
     <div>
@@ -29,7 +33,7 @@ export const GameDetailView = props => {
             <h2>{name}</h2>
             <h3>{metacritic}</h3>
             {rating > 0 && <h3>{rating}</h3>}
-
+            {platformNodes}
             <p>Released: {released}</p>
             <div dangerouslySetInnerHTML={{ __html: description }} />
             {clip && <video width="320" height="240" src={clip} controls />}
