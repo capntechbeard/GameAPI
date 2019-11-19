@@ -14,7 +14,7 @@ export const convertToPlatformIcon = slug => {
     return <FontAwesomeIcon icon={faPlaystation} />;
   }
 };
-
+]
 export const createPlatformNodes = platforms => {
   console.log(platforms);
   return platforms.map(platform => (

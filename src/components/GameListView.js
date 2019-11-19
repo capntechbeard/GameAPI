@@ -16,9 +16,6 @@ export const GameListView = props => {
   const outerWrapperStyle = {
     backgroundImage: "url(" + icon + ")"
   };
-  // const fadedBackgroundStyle = {
-  //   backgroundImage: "url(" + background_image + ")"
-  // };
   const onClick = props.onClick;
 
   return (
