@@ -1,10 +1,15 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
-import { faDesktop } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlaystation,
+  faXbox,
+  faApple,
+  faLinux
+} from "@fortawesome/free-brands-svg-icons";
+import { faDesktop, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
 export const convertToPlatformIcon = slug => {
-  if (slug === "xbox") {
+  if (slug === "xbox" || slug === "xbox-one") {
     return <FontAwesomeIcon icon={faXbox} />;
   }
   if (slug === "pc") {
@@ -12,6 +17,19 @@ export const convertToPlatformIcon = slug => {
   }
   if (slug === "playstation" || slug === "playstation4") {
     return <FontAwesomeIcon icon={faPlaystation} />;
+  }
+  if (
+    slug === "nintendo" ||
+    slug === "nintendo-switch" ||
+    slug === "nintendo-3ds"
+  ) {
+    return <FontAwesomeIcon icon={faPlusSquare} />;
+  }
+  if (slug === "mac" || slug === "macos") {
+    return <FontAwesomeIcon icon={faApple} />;
+  }
+  if (slug === "linux") {
+    return <FontAwesomeIcon icon={faLinux} />;
   }
 };
 

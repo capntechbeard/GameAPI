@@ -127,7 +127,6 @@ class App extends React.Component {
     const rating = game.rating;
     const released = game.released;
     const icon = game.background_image;
-    const website = game.website;
     const parent_platforms = game.parent_platforms;
     return (
       <GameListView
