@@ -1,6 +1,6 @@
 import React from "react";
 
-import { createPlatformNodes } from "../lib/utility";
+import { createPlatformNodes, createStoreNodes } from "../lib/utility";
 
 export const GameListView = props => {
   const name = props.name;
@@ -11,7 +11,9 @@ export const GameListView = props => {
   const icon = props.icon;
 
   const platforms = props.parent_platforms;
+  const stores = props.stores;
   const platformNodes = createPlatformNodes(platforms);
+  const storeNodes = createStoreNodes(stores);
 
   const outerWrapperStyle = {
     backgroundImage: "url(" + icon + ")"
@@ -29,7 +31,8 @@ export const GameListView = props => {
         <h3>{metacritic}</h3>
         {rating > 0 && <h3>{rating}</h3>}
         <br />
-        {platformNodes}
+        <div className="platformList">{platformNodes}</div>
+        <div className="storeList">{storeNodes}</div>
         <p>Released: {released}</p>
       </div>
     </div>

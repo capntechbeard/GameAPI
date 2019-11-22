@@ -57,6 +57,7 @@ class App extends React.Component {
       const background_image = data.background_image;
       const website = data.website;
       const parent_platforms = data.parent_platforms;
+      const stores = data.stores;
       const clip = data.clip && data.clip.clip;
       console.log(data);
 
@@ -70,6 +71,7 @@ class App extends React.Component {
         background_image,
         website,
         parent_platforms,
+        stores,
         clip,
         showDetail: true
       });
@@ -128,6 +130,7 @@ class App extends React.Component {
     const released = game.released;
     const icon = game.background_image;
     const parent_platforms = game.parent_platforms;
+    const stores = game.stores;
     return (
       <GameListView
         name={name}
@@ -137,6 +140,7 @@ class App extends React.Component {
         released={released}
         icon={icon}
         parent_platforms={parent_platforms}
+        stores={stores}
         onClick={() => this.getGameDetail(id)}
       />
     );
@@ -159,6 +163,7 @@ class App extends React.Component {
       metacritic,
       name,
       parent_platforms,
+      stores,
       rating,
       released,
       showDetail,
@@ -183,6 +188,7 @@ class App extends React.Component {
             background_image={background_image}
             website={website}
             parent_platforms={parent_platforms}
+            stores={stores}
             clip={clip}
             hideGameDetail={this.hideGameDetail}
           />
