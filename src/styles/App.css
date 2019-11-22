@@ -140,7 +140,29 @@ h4 {
   justify-content: space-evenly;
 }
 
+.platformIcon {
+  padding: 4px;
+  height: 28px;
+  width: 28px;
+  border-radius: 3em;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .storeList {
   display: flex;
   justify-content: space-evenly;
+}
+
+.storeIcon {
+  padding: 4px;
+  height: 28px;
+  width: 28px;
+  border-radius: 3em;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
