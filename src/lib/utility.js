@@ -44,17 +44,17 @@ export const convertToPlatformIcon = slug => {
 };
 
 export const convertToStoreIcon = slug => {
-  if (slug === "xbox-store" || slug === "xbox360") {
-    return <FontAwesomeIcon icon={faXbox} />;
+  if (slug === "xbox") {
+    return <img className="NintendoSwitchSpecial" src="/NintendoSwitch.svg" />;
   }
   if (slug === "steam") {
     return <FontAwesomeIcon icon={faSteam} />;
   }
-  if (slug === "playstation-store") {
+  if (slug === "playstation") {
     return <FontAwesomeIcon icon={faPlaystation} />;
   }
   if (slug === "nintendo") {
-    return <FontAwesomeIcon icon={faPlusSquare} />;
+    return <img src="../public/NintendoSwitch.svg"></img>;
   }
   if (slug === "apple-appstore") {
     return <FontAwesomeIcon icon={faApple} />;
@@ -71,27 +71,61 @@ export const convertToStoreIcon = slug => {
 };
 
 export const createPlatformNodes = platforms => {
-  console.log(platforms);
-  return platforms.map(platform => (
-    <div className="platformIcon" key={platform.platform.slug}>
-      {convertToPlatformIcon(platform.platform.slug)}
+  const filteredPlatforms = filterDuplicatePlatforms(platforms);
+  return filteredPlatforms.map(platform => (
+    <div className="platformIcon" key={platform.slug}>
+      {convertToPlatformIcon(platform.slug)}
     </div>
   ));
 };
 
 export const createStoreNodes = stores => {
-  console.log(stores);
-  return stores.map(store => (
-    <div className="storeIcon" key={store.store.slug}>
-      {convertToStoreIcon(store.store.slug)}
+  const filteredStores = filterDuplicateStores(stores);
+  return filteredStores.map(store => (
+    <div className="storeIcon" key={store.slug}>
+      {convertToStoreIcon(store.slug)}
     </div>
   ));
 };
 
-/*  
-iOs     
-Android     
-MAC     
-Linux      
-Switch
-*/
+export const filterDuplicatePlatforms = platforms => {
+  const filteredArray = [];
+  for (let platform of platforms) {
+    if (platform.platform.slug.indexOf("xbox") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "xbox")) {
+        filteredArray.push({
+          slug: "xbox"
+        });
+      }
+    }
+    if (platform.platform.slug.indexOf("playstation") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "playstation")) {
+        filteredArray.push({
+          slug: "playstation"
+        });
+      }
+    }
+  }
+  return filteredArray;
+};
+
+export const filterDuplicateStores = stores => {
+  const filteredArray = [];
+  for (let store of stores) {
+    if (store.store.slug.indexOf("xbox") >= 0) {
+      if (!filteredArray.some(store => store.slug === "xbox")) {
+        filteredArray.push({
+          slug: "xbox"
+        });
+      }
+    }
+    if (store.store.slug.indexOf("playstation") >= 0) {
+      if (!filteredArray.some(store => store.slug === "playstation")) {
+        filteredArray.push({
+          slug: "playstation"
+        });
+      }
+    }
+  }
+  return filteredArray;
+};
