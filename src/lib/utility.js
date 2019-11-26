@@ -30,7 +30,7 @@ export const convertToPlatformIcon = slug => {
     slug === "nintendo-switch" ||
     slug === "nintendo-3ds"
   ) {
-    return <FontAwesomeIcon icon={faPlusSquare} />;
+    return <img className="nintendoSwitchSpecial" src="/NintendoSwitch.svg" />;
   }
   if (slug === "mac" || slug === "macos" || slug === "ios") {
     return <FontAwesomeIcon icon={faApple} />;
@@ -70,8 +70,14 @@ export const convertToStoreIcon = slug => {
   }
 };
 
+// export const orderPlatformResults = platform => {
+//   if (platform.slug === "pc") {
+//   }
+// };
+
 export const createPlatformNodes = platforms => {
   const filteredPlatforms = filterDuplicatePlatforms(platforms);
+  // const divStyle = orderPlatformResults(platforms);
   return filteredPlatforms.map(platform => (
     <div className="platformIcon" key={platform.slug}>
       {convertToPlatformIcon(platform.slug)}
@@ -105,7 +111,43 @@ export const filterDuplicatePlatforms = platforms => {
         });
       }
     }
+    if (platform.platform.slug.indexOf("pc") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "pc")) {
+        filteredArray.push({
+          slug: "pc"
+        });
+      }
+    }
+    if (platform.platform.slug.indexOf("mac") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "mac")) {
+        filteredArray.push({
+          slug: "mac"
+        });
+      }
+    }
+    if (platform.platform.slug.indexOf("linux") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "linux")) {
+        filteredArray.push({
+          slug: "linux"
+        });
+      }
+    }
+    if (platform.platform.slug.indexOf("nintendo") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "nintendo")) {
+        filteredArray.push({
+          slug: "nintendo"
+        });
+      }
+    }
+    if (platform.platform.slug.indexOf("iOS") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "iOS")) {
+        filteredArray.push({
+          slug: "iOS"
+        });
+      }
+    }
   }
+
   return filteredArray;
 };
 
@@ -123,6 +165,41 @@ export const filterDuplicateStores = stores => {
       if (!filteredArray.some(store => store.slug === "playstation")) {
         filteredArray.push({
           slug: "playstation"
+        });
+      }
+    }
+    if (store.store.slug.indexOf("steam") >= 0) {
+      if (!filteredArray.some(store => store.slug === "steam")) {
+        filteredArray.push({
+          slug: "steam"
+        });
+      }
+    }
+    if (store.store.slug.indexOf("apple") >= 0) {
+      if (!filteredArray.some(store => store.slug === "apple")) {
+        filteredArray.push({
+          slug: "apple"
+        });
+      }
+    }
+    if (store.store.slug.indexOf("google") >= 0) {
+      if (!filteredArray.some(store => store.slug === "google")) {
+        filteredArray.push({
+          slug: "google"
+        });
+      }
+    }
+    if (store.store.slug.indexOf("epic") >= 0) {
+      if (!filteredArray.some(store => store.slug === "epic")) {
+        filteredArray.push({
+          slug: "epic"
+        });
+      }
+    }
+    if (store.store.slug.indexOf("gog") >= 0) {
+      if (!filteredArray.some(store => store.slug === "gog")) {
+        filteredArray.push({
+          slug: "gog"
         });
       }
     }
