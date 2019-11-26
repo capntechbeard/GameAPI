@@ -45,7 +45,7 @@ export const convertToPlatformIcon = slug => {
 
 export const convertToStoreIcon = slug => {
   if (slug === "xbox") {
-    return <img className="NintendoSwitchSpecial" src="/NintendoSwitch.svg" />;
+    return <FontAwesomeIcon icon={faXbox} />;
   }
   if (slug === "steam") {
     return <FontAwesomeIcon icon={faSteam} />;
@@ -54,7 +54,7 @@ export const convertToStoreIcon = slug => {
     return <FontAwesomeIcon icon={faPlaystation} />;
   }
   if (slug === "nintendo") {
-    return <img src="../public/NintendoSwitch.svg"></img>;
+    return <img className="NintendoSwitchSpecial" src="/NintendoSwitch.svg" />;
   }
   if (slug === "apple-appstore") {
     return <FontAwesomeIcon icon={faApple} />;
