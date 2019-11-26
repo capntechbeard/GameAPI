@@ -70,15 +70,14 @@ export const convertToStoreIcon = slug => {
   }
 };
 
-// export const orderPlatformResults = platform => {
-//   if (platform.slug === "pc") {
-//   }
-// };
+export const orderPlatforms = platforms => {
+  return platforms.sort((a, b) => a.order - b.order);
+};
 
 export const createPlatformNodes = platforms => {
   const filteredPlatforms = filterDuplicatePlatforms(platforms);
-  // const divStyle = orderPlatformResults(platforms);
-  return filteredPlatforms.map(platform => (
+  const orderedPlatforms = orderPlatforms(filteredPlatforms);
+  return orderedPlatforms.map(platform => (
     <div className="platformIcon" key={platform.slug}>
       {convertToPlatformIcon(platform.slug)}
     </div>
@@ -100,49 +99,56 @@ export const filterDuplicatePlatforms = platforms => {
     if (platform.platform.slug.indexOf("xbox") >= 0) {
       if (!filteredArray.some(platform => platform.slug === "xbox")) {
         filteredArray.push({
-          slug: "xbox"
+          slug: "xbox",
+          order: 1
         });
       }
     }
     if (platform.platform.slug.indexOf("playstation") >= 0) {
       if (!filteredArray.some(platform => platform.slug === "playstation")) {
         filteredArray.push({
-          slug: "playstation"
+          slug: "playstation",
+          order: 2
         });
       }
     }
     if (platform.platform.slug.indexOf("pc") >= 0) {
       if (!filteredArray.some(platform => platform.slug === "pc")) {
         filteredArray.push({
-          slug: "pc"
+          slug: "pc",
+          order: 3
         });
       }
     }
     if (platform.platform.slug.indexOf("mac") >= 0) {
       if (!filteredArray.some(platform => platform.slug === "mac")) {
         filteredArray.push({
-          slug: "mac"
+          slug: "mac",
+          order: 4
         });
       }
     }
     if (platform.platform.slug.indexOf("linux") >= 0) {
       if (!filteredArray.some(platform => platform.slug === "linux")) {
         filteredArray.push({
-          slug: "linux"
+          slug: "linux",
+          order: 5
         });
       }
     }
     if (platform.platform.slug.indexOf("nintendo") >= 0) {
       if (!filteredArray.some(platform => platform.slug === "nintendo")) {
         filteredArray.push({
-          slug: "nintendo"
+          slug: "nintendo",
+          order: 6
         });
       }
     }
     if (platform.platform.slug.indexOf("iOS") >= 0) {
       if (!filteredArray.some(platform => platform.slug === "iOS")) {
         filteredArray.push({
-          slug: "iOS"
+          slug: "iOS",
+          order: 7
         });
       }
     }
