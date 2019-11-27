@@ -32,7 +32,10 @@ export const convertToPlatformIcon = slug => {
   ) {
     return <img className="nintendoSwitchSpecial" src="/NintendoSwitch.svg" />;
   }
-  if (slug === "mac" || slug === "macos" || slug === "ios") {
+  if (slug === "mac" || slug === "macos") {
+    return <FontAwesomeIcon icon={faApple} />;
+  }
+  if (slug === "ios") {
     return <FontAwesomeIcon icon={faApple} />;
   }
   if (slug === "linux") {
@@ -54,19 +57,19 @@ export const convertToStoreIcon = slug => {
     return <FontAwesomeIcon icon={faPlaystation} />;
   }
   if (slug === "nintendo") {
-    return <img className="NintendoSwitchSpecial" src="/NintendoSwitch.svg" />;
+    return <img className="nintendoSwitchSpecial" src="/NintendoSwitch.svg" />;
   }
-  if (slug === "apple-appstore") {
+  if (slug === "apple") {
     return <FontAwesomeIcon icon={faApple} />;
   }
   if (slug === "gog") {
-    return <FontAwesomeIcon icon={faPlusSquare} />;
+    return <img className="gogSpecial" src="/GOG.svg" />;
   }
-  if (slug === "google-play") {
+  if (slug === "google") {
     return <FontAwesomeIcon icon={faGooglePlay} />;
   }
-  if (slug === "epic-games") {
-    return <FontAwesomeIcon icon={faPlusSquare} />;
+  if (slug === "epic") {
+    return <img className="epicGamesSpecial" src="/EpicGames.svg" />;
   }
 };
 
@@ -84,9 +87,14 @@ export const createPlatformNodes = platforms => {
   ));
 };
 
+export const orderStores = stores => {
+  return stores.sort((a, b) => a.order - b.order);
+};
+
 export const createStoreNodes = stores => {
   const filteredStores = filterDuplicateStores(stores);
-  return filteredStores.map(store => (
+  const orderedStores = orderStores(filteredStores);
+  return orderedStores.map(store => (
     <div className="storeIcon" key={store.slug}>
       {convertToStoreIcon(store.slug)}
     </div>
@@ -100,7 +108,7 @@ export const filterDuplicatePlatforms = platforms => {
       if (!filteredArray.some(platform => platform.slug === "xbox")) {
         filteredArray.push({
           slug: "xbox",
-          order: 1
+          order: 4
         });
       }
     }
@@ -108,7 +116,7 @@ export const filterDuplicatePlatforms = platforms => {
       if (!filteredArray.some(platform => platform.slug === "playstation")) {
         filteredArray.push({
           slug: "playstation",
-          order: 2
+          order: 5
         });
       }
     }
@@ -116,7 +124,7 @@ export const filterDuplicatePlatforms = platforms => {
       if (!filteredArray.some(platform => platform.slug === "pc")) {
         filteredArray.push({
           slug: "pc",
-          order: 3
+          order: 1
         });
       }
     }
@@ -124,7 +132,7 @@ export const filterDuplicatePlatforms = platforms => {
       if (!filteredArray.some(platform => platform.slug === "mac")) {
         filteredArray.push({
           slug: "mac",
-          order: 4
+          order: 2
         });
       }
     }
@@ -132,7 +140,7 @@ export const filterDuplicatePlatforms = platforms => {
       if (!filteredArray.some(platform => platform.slug === "linux")) {
         filteredArray.push({
           slug: "linux",
-          order: 5
+          order: 3
         });
       }
     }
@@ -148,6 +156,14 @@ export const filterDuplicatePlatforms = platforms => {
       if (!filteredArray.some(platform => platform.slug === "iOS")) {
         filteredArray.push({
           slug: "iOS",
+          order: 8
+        });
+      }
+    }
+    if (platform.platform.slug.indexOf("android") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "android")) {
+        filteredArray.push({
+          slug: "android",
           order: 7
         });
       }
@@ -163,49 +179,64 @@ export const filterDuplicateStores = stores => {
     if (store.store.slug.indexOf("xbox") >= 0) {
       if (!filteredArray.some(store => store.slug === "xbox")) {
         filteredArray.push({
-          slug: "xbox"
+          slug: "xbox",
+          order: 4
         });
       }
     }
     if (store.store.slug.indexOf("playstation") >= 0) {
       if (!filteredArray.some(store => store.slug === "playstation")) {
         filteredArray.push({
-          slug: "playstation"
+          slug: "playstation",
+          order: 5
         });
       }
     }
     if (store.store.slug.indexOf("steam") >= 0) {
       if (!filteredArray.some(store => store.slug === "steam")) {
         filteredArray.push({
-          slug: "steam"
+          slug: "steam",
+          order: 1
         });
       }
     }
     if (store.store.slug.indexOf("apple") >= 0) {
       if (!filteredArray.some(store => store.slug === "apple")) {
         filteredArray.push({
-          slug: "apple"
+          slug: "apple",
+          order: 8
         });
       }
     }
     if (store.store.slug.indexOf("google") >= 0) {
       if (!filteredArray.some(store => store.slug === "google")) {
         filteredArray.push({
-          slug: "google"
+          slug: "google",
+          order: 7
         });
       }
     }
     if (store.store.slug.indexOf("epic") >= 0) {
       if (!filteredArray.some(store => store.slug === "epic")) {
         filteredArray.push({
-          slug: "epic"
+          slug: "epic",
+          order: 3
         });
       }
     }
     if (store.store.slug.indexOf("gog") >= 0) {
       if (!filteredArray.some(store => store.slug === "gog")) {
         filteredArray.push({
-          slug: "gog"
+          slug: "gog",
+          order: 2
+        });
+      }
+    }
+    if (store.store.slug.indexOf("nintendo") >= 0) {
+      if (!filteredArray.some(store => store.slug === "nintendo")) {
+        filteredArray.push({
+          slug: "nintendo",
+          order: 6
         });
       }
     }

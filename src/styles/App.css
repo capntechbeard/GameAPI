@@ -171,3 +171,15 @@ h4 {
   height: 18px;
   width: 18px;
 }
+
+.epicGamesSpecial {
+  height: 18px;
+  width: 18px;
+}
+
+.gogSpecial {
+  position: relative;
+  top: 2px;
+  height: 24px;
+  width: 24px;
+}
