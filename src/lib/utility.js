@@ -104,22 +104,6 @@ export const createStoreNodes = stores => {
 export const filterDuplicatePlatforms = platforms => {
   const filteredArray = [];
   for (let platform of platforms) {
-    if (platform.platform.slug.indexOf("xbox") >= 0) {
-      if (!filteredArray.some(platform => platform.slug === "xbox")) {
-        filteredArray.push({
-          slug: "xbox",
-          order: 4
-        });
-      }
-    }
-    if (platform.platform.slug.indexOf("playstation") >= 0) {
-      if (!filteredArray.some(platform => platform.slug === "playstation")) {
-        filteredArray.push({
-          slug: "playstation",
-          order: 5
-        });
-      }
-    }
     if (platform.platform.slug.indexOf("pc") >= 0) {
       if (!filteredArray.some(platform => platform.slug === "pc")) {
         filteredArray.push({
@@ -144,19 +128,27 @@ export const filterDuplicatePlatforms = platforms => {
         });
       }
     }
+    if (platform.platform.slug.indexOf("xbox") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "xbox")) {
+        filteredArray.push({
+          slug: "xbox",
+          order: 21
+        });
+      }
+    }
+    if (platform.platform.slug.indexOf("playstation") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "playstation")) {
+        filteredArray.push({
+          slug: "playstation",
+          order: 22
+        });
+      }
+    }
     if (platform.platform.slug.indexOf("nintendo") >= 0) {
       if (!filteredArray.some(platform => platform.slug === "nintendo")) {
         filteredArray.push({
           slug: "nintendo",
-          order: 6
-        });
-      }
-    }
-    if (platform.platform.slug.indexOf("iOS") >= 0) {
-      if (!filteredArray.some(platform => platform.slug === "iOS")) {
-        filteredArray.push({
-          slug: "iOS",
-          order: 8
+          order: 23
         });
       }
     }
@@ -164,7 +156,15 @@ export const filterDuplicatePlatforms = platforms => {
       if (!filteredArray.some(platform => platform.slug === "android")) {
         filteredArray.push({
           slug: "android",
-          order: 7
+          order: 31
+        });
+      }
+    }
+    if (platform.platform.slug.indexOf("iOS") >= 0) {
+      if (!filteredArray.some(platform => platform.slug === "iOS")) {
+        filteredArray.push({
+          slug: "iOS",
+          order: 32
         });
       }
     }
@@ -176,51 +176,11 @@ export const filterDuplicatePlatforms = platforms => {
 export const filterDuplicateStores = stores => {
   const filteredArray = [];
   for (let store of stores) {
-    if (store.store.slug.indexOf("xbox") >= 0) {
-      if (!filteredArray.some(store => store.slug === "xbox")) {
-        filteredArray.push({
-          slug: "xbox",
-          order: 4
-        });
-      }
-    }
-    if (store.store.slug.indexOf("playstation") >= 0) {
-      if (!filteredArray.some(store => store.slug === "playstation")) {
-        filteredArray.push({
-          slug: "playstation",
-          order: 5
-        });
-      }
-    }
     if (store.store.slug.indexOf("steam") >= 0) {
       if (!filteredArray.some(store => store.slug === "steam")) {
         filteredArray.push({
           slug: "steam",
           order: 1
-        });
-      }
-    }
-    if (store.store.slug.indexOf("apple") >= 0) {
-      if (!filteredArray.some(store => store.slug === "apple")) {
-        filteredArray.push({
-          slug: "apple",
-          order: 8
-        });
-      }
-    }
-    if (store.store.slug.indexOf("google") >= 0) {
-      if (!filteredArray.some(store => store.slug === "google")) {
-        filteredArray.push({
-          slug: "google",
-          order: 7
-        });
-      }
-    }
-    if (store.store.slug.indexOf("epic") >= 0) {
-      if (!filteredArray.some(store => store.slug === "epic")) {
-        filteredArray.push({
-          slug: "epic",
-          order: 3
         });
       }
     }
@@ -232,11 +192,51 @@ export const filterDuplicateStores = stores => {
         });
       }
     }
+    if (store.store.slug.indexOf("epic") >= 0) {
+      if (!filteredArray.some(store => store.slug === "epic")) {
+        filteredArray.push({
+          slug: "epic",
+          order: 3
+        });
+      }
+    }
+    if (store.store.slug.indexOf("xbox") >= 0) {
+      if (!filteredArray.some(store => store.slug === "xbox")) {
+        filteredArray.push({
+          slug: "xbox",
+          order: 11
+        });
+      }
+    }
+    if (store.store.slug.indexOf("playstation") >= 0) {
+      if (!filteredArray.some(store => store.slug === "playstation")) {
+        filteredArray.push({
+          slug: "playstation",
+          order: 12
+        });
+      }
+    }
     if (store.store.slug.indexOf("nintendo") >= 0) {
       if (!filteredArray.some(store => store.slug === "nintendo")) {
         filteredArray.push({
           slug: "nintendo",
-          order: 6
+          order: 13
+        });
+      }
+    }
+    if (store.store.slug.indexOf("google") >= 0) {
+      if (!filteredArray.some(store => store.slug === "google")) {
+        filteredArray.push({
+          slug: "google",
+          order: 21
+        });
+      }
+    }
+    if (store.store.slug.indexOf("apple") >= 0) {
+      if (!filteredArray.some(store => store.slug === "apple")) {
+        filteredArray.push({
+          slug: "apple",
+          order: 22
         });
       }
     }
