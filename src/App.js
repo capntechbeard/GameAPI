@@ -5,10 +5,8 @@ import {
   Navbar,
   QueryBar
 } from "./components/index.js";
-// import { Navbar } from "./components/Navbar.js";
-// import { GameDetailView } from "./components/GameDetailView.js";
-// import { GameListView } from "./components/GameListView.js";
 import "./styles/App.css";
+import { getGameDetail, getGameList } from "./services/games.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,60 +19,35 @@ class App extends React.Component {
     this.getGameList();
   }
 
-  getGameDetail = gameID => {
-    if (!gameID) {
-      // var max = 364944; //Max results from RAWG.api
+  getGameDetail = async gameID => {
+    const data = await getGameDetail(gameID);
+    const {
+      name,
+      id,
+      description,
+      metacritic,
+      rating,
+      released,
+      background_image,
+      website,
+      parent_platforms,
+      stores
+    } = data;
+    const clip = data.clip && data.clip.clip;
 
-      var min = 3000; //More useable range of data
-      var max = 3500; //Many games have missing values
-
-      var random = Math.floor(Math.random() * (+max - +min)) + +min;
-      gameID = random.toString();
-    }
-
-    const url = "https://api.rawg.io/api/games/" + gameID; //Random Result
-    // const url = "https://api.rawg.io/api/games/3498"; //GTA5
-    // const url = "https://api.rawg.io/api/games/3328"; //The Witcher 3
-
-    function httpGetAsync(theUrl, callback) {
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-          callback(xmlHttp.responseText);
-      };
-      xmlHttp.open("GET", theUrl, true); // true for asynchronous
-      xmlHttp.send(null);
-    }
-
-    httpGetAsync(url, text => {
-      const data = JSON.parse(text);
-      const name = data.name;
-      const id = data.id;
-      const description = data.description;
-      const metacritic = data.metacritic;
-      const rating = data.rating;
-      const released = data.released;
-      const background_image = data.background_image;
-      const website = data.website;
-      const parent_platforms = data.parent_platforms;
-      const stores = data.stores;
-      const clip = data.clip && data.clip.clip;
-      console.log(data);
-
-      this.setState({
-        name,
-        id,
-        description,
-        metacritic,
-        rating,
-        released,
-        background_image,
-        website,
-        parent_platforms,
-        stores,
-        clip,
-        showDetail: true
-      });
+    this.setState({
+      name,
+      id,
+      description,
+      metacritic,
+      rating,
+      released,
+      background_image,
+      website,
+      parent_platforms,
+      stores,
+      clip,
+      showDetail: true
     });
   };
 
@@ -83,42 +56,15 @@ class App extends React.Component {
     this.setState({ selectedGenre: event.target.value });
   };
 
-  getGameList = () => {
-    let url = "https://api.rawg.io/api/games?page_size=40";
+  getGameList = async () => {
     const selectedGenre = this.state.selectedGenre;
-    if (selectedGenre) {
-      url = url + "&genres=" + selectedGenre;
-    }
-
-    function httpGetAsync(theUrl, callback) {
-      var xmlHttp = new XMLHttpRequest();
-      xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-          callback(xmlHttp.responseText);
-      };
-      xmlHttp.open("GET", theUrl, true); // true for asynchronous
-      xmlHttp.send(null);
-    }
-    console.log(url);
-
-    httpGetAsync(url, response => {
-      const data = JSON.parse(response);
-      console.log(data);
-      const results = data.results;
-      const filteredResults = data.results.filter(result => {
-        if (result.clip) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-      const nodes = filteredResults.map(result => {
-        return this.createGamesListNode(result);
-      });
-      this.setState({
-        gameListNodes: nodes,
-        showDetail: false
-      });
+    const filteredResults = await getGameList(selectedGenre);
+    const nodes = filteredResults.map(result => {
+      return this.createGamesListNode(result);
+    });
+    this.setState({
+      gameListNodes: nodes,
+      showDetail: false
     });
   };
 
@@ -172,7 +118,10 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <Navbar onClickRandom={() => this.getGameDetail()} />
+        <Navbar
+          onClickList={() => this.getGameList()}
+          onClickRandom={() => this.getGameDetail()}
+        />
         <QueryBar
           handleGenreChange={this.handleGenreChange}
           handleSearch={() => this.getGameList()}

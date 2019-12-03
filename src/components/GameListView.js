@@ -4,12 +4,10 @@ import { createPlatformNodes, createStoreNodes } from "../lib/utility";
 
 export const GameListView = props => {
   const name = props.name;
-  const id = props.id;
   const metacritic = props.metacritic;
   const rating = props.rating;
   const released = props.released;
   const icon = props.icon;
-
   const platforms = props.parent_platforms;
   const stores = props.stores;
   const platformNodes = createPlatformNodes(platforms);

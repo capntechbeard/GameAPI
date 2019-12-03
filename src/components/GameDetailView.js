@@ -1,7 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlaystation, faXbox } from "@fortawesome/free-brands-svg-icons";
-import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 import { createPlatformNodes, createStoreNodes } from "../lib/utility";
 
 export const GameDetailView = props => {
