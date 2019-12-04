@@ -69,14 +69,16 @@ class App extends React.Component {
   };
 
   createGamesListNode = game => {
-    const name = game.name;
-    const id = game.id;
-    const metacritic = game.metacritic;
-    const rating = game.rating;
-    const released = game.released;
-    const icon = game.background_image;
-    const parent_platforms = game.parent_platforms;
-    const stores = game.stores;
+    const {
+      name,
+      id,
+      metacritic,
+      rating,
+      released,
+      background_image: icon,
+      parent_platforms,
+      stores
+    } = game;
     return (
       <GameListView
         name={name}

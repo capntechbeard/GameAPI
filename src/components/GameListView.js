@@ -3,14 +3,16 @@ import React from "react";
 import { createPlatformNodes, createStoreNodes } from "../lib/utility";
 
 export const GameListView = props => {
-  const name = props.name;
-  const metacritic = props.metacritic;
-  const rating = props.rating;
-  const released = props.released;
-  const icon = props.icon;
-  const platforms = props.parent_platforms;
-  const stores = props.stores;
-  const platformNodes = createPlatformNodes(platforms);
+  const {
+    name,
+    metacritic,
+    rating,
+    released,
+    icon,
+    parent_platforms,
+    stores
+  } = props;
+  const platformNodes = createPlatformNodes(parent_platforms);
   const storeNodes = createStoreNodes(stores);
 
   const outerWrapperStyle = {
