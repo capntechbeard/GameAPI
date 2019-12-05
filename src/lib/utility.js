@@ -13,63 +13,146 @@ import { faDesktop, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 
 export const convertToPlatformIcon = slug => {
   if (slug === "xbox" || slug === "xbox-one" || slug === "xbox360") {
-    return <FontAwesomeIcon icon={faXbox} />;
+    return (
+      <span>
+        <FontAwesomeIcon icon={faXbox} />
+        <span className="Icon-text">Xbox One</span>
+      </span>
+    );
   }
   if (slug === "pc") {
-    return <FontAwesomeIcon icon={faDesktop} />;
+    return (
+      <span>
+        <FontAwesomeIcon icon={faDesktop} />
+        <span className="Icon-text">Windows</span>
+      </span>
+    );
   }
   if (
     slug === "playstation" ||
     slug === "playstation4" ||
     slug === "playstation3"
   ) {
-    return <FontAwesomeIcon icon={faPlaystation} />;
+    return (
+      <span>
+        <FontAwesomeIcon icon={faPlaystation} />
+        <span className="Icon-text">Playstation 4</span>
+      </span>
+    );
   }
   if (
     slug === "nintendo" ||
     slug === "nintendo-switch" ||
     slug === "nintendo-3ds"
   ) {
-    return <img className="nintendoSwitchSpecial" src="/NintendoSwitch.svg" />;
+    return (
+      <span>
+        <img className="nintendoSwitchSpecial" src="/NintendoSwitch.svg" />
+        <span className="Icon-text">Switch</span>
+      </span>
+    );
   }
   if (slug === "mac" || slug === "macos") {
-    return <FontAwesomeIcon icon={faApple} />;
+    return (
+      <span>
+        <FontAwesomeIcon icon={faApple} />
+        <span className="Icon-text">MacOS</span>
+      </span>
+    );
   }
   if (slug === "ios") {
-    return <FontAwesomeIcon icon={faApple} />;
+    return (
+      <span>
+        <FontAwesomeIcon icon={faApple} />
+        <span className="Icon-text">iOS</span>
+      </span>
+    );
   }
   if (slug === "linux") {
-    return <FontAwesomeIcon icon={faLinux} />;
+    return (
+      <span>
+        <FontAwesomeIcon icon={faLinux} />
+        <span className="Icon-text">Linux</span>
+      </span>
+    );
   }
   if (slug === "android") {
-    return <FontAwesomeIcon icon={faAndroid} />;
+    return (
+      <span>
+        <FontAwesomeIcon icon={faAndroid} />
+        <span className="Icon-text">Android</span>
+      </span>
+    );
   }
 };
 
-export const convertToStoreIcon = slug => {
+export const convertToStoreIcon = (slug, url_en) => {
+  console.log(slug, url_en);
   if (slug === "xbox") {
-    return <FontAwesomeIcon icon={faXbox} />;
+    const url = url_en ? url_en : "https://www.xbox.com/en-US/microsoft-store";
+    return (
+      <a href={url}>
+        <FontAwesomeIcon icon={faXbox} />
+        <span className="Icon-text">Microsoft Store</span>
+      </a>
+    );
   }
   if (slug === "steam") {
-    return <FontAwesomeIcon icon={faSteam} />;
+    const url = url_en ? url_en : "https://store.steampowered.com/";
+    return (
+      <a href={url}>
+        <FontAwesomeIcon icon={faSteam} />
+        <span className="Icon-text">Steam</span>
+      </a>
+    );
   }
   if (slug === "playstation") {
-    return <FontAwesomeIcon icon={faPlaystation} />;
+    return (
+      <a href="https://store.playstation.com/en-us/home/games">
+        <FontAwesomeIcon icon={faPlaystation} />
+        <span className="Icon-text">Playstation Store</span>
+      </a>
+    );
   }
   if (slug === "nintendo") {
-    return <img className="nintendoSwitchSpecial" src="/NintendoSwitch.svg" />;
+    return (
+      <a href="https://www.nintendo.com/games/switch/">
+        <img className="nintendoSwitchSpecial" src="/NintendoSwitch.svg" />
+        <span className="Icon-text">Nintendo Store</span>
+      </a>
+    );
   }
   if (slug === "apple") {
-    return <FontAwesomeIcon icon={faApple} />;
+    return (
+      <a href="https://www.apple.com/ios/app-store/">
+        <FontAwesomeIcon icon={faApple} />
+        <span className="Icon-text">Apple App Store</span>
+      </a>
+    );
   }
   if (slug === "gog") {
-    return <img className="gogSpecial" src="/GOG.svg" />;
+    return (
+      <a href="https://www.gog.com/">
+        <img className="gogSpecial" src="/GOG.svg" />
+        <span className="Icon-text">Good Old Games</span>
+      </a>
+    );
   }
   if (slug === "google") {
-    return <FontAwesomeIcon icon={faGooglePlay} />;
+    return (
+      <a href="https://play.google.com/store">
+        <FontAwesomeIcon icon={faGooglePlay} />
+        <span className="Icon-text">Google Play</span>
+      </a>
+    );
   }
   if (slug === "epic") {
-    return <img className="epicGamesSpecial" src="/EpicGames.svg" />;
+    return (
+      <a href="https://www.epicgames.com/store/">
+        <img className="epicGamesSpecial" src="/EpicGames.svg" />
+        <span className="Icon-text">Epic Game Store</span>
+      </a>
+    );
   }
 };
 
@@ -96,7 +179,7 @@ export const createStoreNodes = stores => {
   const orderedStores = orderStores(filteredStores);
   return orderedStores.map(store => (
     <div className="storeIcon" key={store.slug}>
-      {convertToStoreIcon(store.slug)}
+      {convertToStoreIcon(store.slug, store.url_en)}
     </div>
   ));
 };
@@ -180,7 +263,8 @@ export const filterDuplicateStores = stores => {
       if (!filteredArray.some(store => store.slug === "steam")) {
         filteredArray.push({
           slug: "steam",
-          order: 1
+          order: 1,
+          url_en: store.url_en
         });
       }
     }
@@ -188,7 +272,8 @@ export const filterDuplicateStores = stores => {
       if (!filteredArray.some(store => store.slug === "gog")) {
         filteredArray.push({
           slug: "gog",
-          order: 2
+          order: 2,
+          url_en: store.url_en
         });
       }
     }
@@ -196,7 +281,8 @@ export const filterDuplicateStores = stores => {
       if (!filteredArray.some(store => store.slug === "epic")) {
         filteredArray.push({
           slug: "epic",
-          order: 3
+          order: 3,
+          url_en: store.url_en
         });
       }
     }
@@ -204,7 +290,8 @@ export const filterDuplicateStores = stores => {
       if (!filteredArray.some(store => store.slug === "xbox")) {
         filteredArray.push({
           slug: "xbox",
-          order: 11
+          order: 11,
+          url_en: store.url_en
         });
       }
     }
@@ -212,7 +299,8 @@ export const filterDuplicateStores = stores => {
       if (!filteredArray.some(store => store.slug === "playstation")) {
         filteredArray.push({
           slug: "playstation",
-          order: 12
+          order: 12,
+          url_en: store.url_en
         });
       }
     }
@@ -220,7 +308,8 @@ export const filterDuplicateStores = stores => {
       if (!filteredArray.some(store => store.slug === "nintendo")) {
         filteredArray.push({
           slug: "nintendo",
-          order: 13
+          order: 13,
+          url_en: store.url_en
         });
       }
     }
@@ -228,7 +317,8 @@ export const filterDuplicateStores = stores => {
       if (!filteredArray.some(store => store.slug === "google")) {
         filteredArray.push({
           slug: "google",
-          order: 21
+          order: 21,
+          url_en: store.url_en
         });
       }
     }
@@ -236,7 +326,8 @@ export const filterDuplicateStores = stores => {
       if (!filteredArray.some(store => store.slug === "apple")) {
         filteredArray.push({
           slug: "apple",
-          order: 22
+          order: 22,
+          url_en: store.url_en
         });
       }
     }

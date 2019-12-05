@@ -124,10 +124,10 @@ class App extends React.Component {
           onClickList={() => this.getGameList()}
           onClickRandom={() => this.getGameDetail()}
         />
-        <QueryBar
+        {/* <QueryBar
           handleGenreChange={this.handleGenreChange}
           handleSearch={() => this.getGameList()}
-        />
+        /> */}
         {!showDetail && <div className="List-nodes">{gameListNodes}</div>}
         {showDetail && (
           <GameDetailView
