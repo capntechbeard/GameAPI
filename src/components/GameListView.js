@@ -32,7 +32,10 @@ export const GameListView = props => {
           <h3>{metacritic}</h3>
           {rating > 0 && <h3>{rating}</h3>}
         </div>
+        <br />
+        <h3>Platforms</h3>
         <div className="platformList">{platformNodes}</div>
+        <h3>Stores</h3>
         <div className="storeList">{storeNodes}</div>
         <p className="Release-date">Released: {released}</p>
       </div>

@@ -45,7 +45,8 @@ export const GameDetailView = props => {
               className="Detail-description"
               dangerouslySetInnerHTML={{ __html: description }}
             />
-            {clip && <video width="320" height="240" src={clip} controls />}
+            <h3>Preview:</h3>
+            {clip && <video src={clip} controls />}
             <br />
             <div className="Detail-website">
               <span>

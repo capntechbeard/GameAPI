@@ -107,48 +107,56 @@ export const convertToStoreIcon = (slug, url_en) => {
     );
   }
   if (slug === "playstation") {
+    const url = url_en
+      ? url_en
+      : "https://store.playstation.com/en-us/home/games";
     return (
-      <a href="https://store.playstation.com/en-us/home/games">
+      <a href={url}>
         <FontAwesomeIcon icon={faPlaystation} />
         <span className="Icon-text">Playstation Store</span>
       </a>
     );
   }
   if (slug === "nintendo") {
+    const url = url_en ? url_en : "https://www.nintendo.com/games/switch/";
     return (
-      <a href="https://www.nintendo.com/games/switch/">
+      <a href={url}>
         <img className="nintendoSwitchSpecial" src="/NintendoSwitch.svg" />
         <span className="Icon-text">Nintendo Store</span>
       </a>
     );
   }
   if (slug === "apple") {
+    const url = url_en ? url_en : "https://www.apple.com/ios/app-store/";
     return (
-      <a href="https://www.apple.com/ios/app-store/">
+      <a href={url}>
         <FontAwesomeIcon icon={faApple} />
         <span className="Icon-text">Apple App Store</span>
       </a>
     );
   }
   if (slug === "gog") {
+    const url = url_en ? url_en : "https://www.gog.com/";
     return (
-      <a href="https://www.gog.com/">
+      <a href={url}>
         <img className="gogSpecial" src="/GOG.svg" />
         <span className="Icon-text">Good Old Games</span>
       </a>
     );
   }
   if (slug === "google") {
+    const url = url_en ? url_en : "https://play.google.com/store";
     return (
-      <a href="https://play.google.com/store">
+      <a href={url}>
         <FontAwesomeIcon icon={faGooglePlay} />
         <span className="Icon-text">Google Play</span>
       </a>
     );
   }
   if (slug === "epic") {
+    const url = url_en ? url_en : "https://www.epicgames.com/store/";
     return (
-      <a href="https://www.epicgames.com/store/">
+      <a href={url}>
         <img className="epicGamesSpecial" src="/EpicGames.svg" />
         <span className="Icon-text">Epic Game Store</span>
       </a>
