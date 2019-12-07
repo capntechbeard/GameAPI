@@ -9,7 +9,7 @@ import {
   faGooglePlay,
   faAndroid
 } from "@fortawesome/free-brands-svg-icons";
-import { faDesktop, faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faDesktop } from "@fortawesome/free-solid-svg-icons";
 
 export const convertToPlatformIcon = slug => {
   if (slug === "xbox" || slug === "xbox-one" || slug === "xbox360") {

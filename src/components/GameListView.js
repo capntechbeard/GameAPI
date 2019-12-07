@@ -29,14 +29,14 @@ export const GameListView = props => {
       <div className="Inner-list-wrapper">
         <div className="Game-list-header">
           <h2>{name}</h2>
-          <h3>{metacritic}</h3>
+          <div className="">{metacritic}</div>
           {rating > 0 && <h3>{rating}</h3>}
         </div>
         <br />
         <h3>Platforms</h3>
-        <div className="platformList">{platformNodes}</div>
+        <div className="Platform-list">{platformNodes}</div>
         <h3>Stores</h3>
-        <div className="storeList">{storeNodes}</div>
+        <div className="Store-list">{storeNodes}</div>
         <p className="Release-date">Released: {released}</p>
       </div>
     </div>
