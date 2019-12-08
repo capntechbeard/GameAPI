@@ -52,7 +52,7 @@ class App extends React.Component {
   };
 
   handleGenreChange = event => {
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState({ selectedGenre: event.target.value });
   };
 
@@ -115,7 +115,8 @@ class App extends React.Component {
       rating,
       released,
       showDetail,
-      website
+      website,
+      id
     } = this.state;
 
     return (
@@ -123,6 +124,7 @@ class App extends React.Component {
         <Navbar
           onClickList={() => this.getGameList()}
           onClickRandom={() => this.getGameDetail()}
+          onClickMeh={() => this.getGameDetail(3256)}
         />
         {/* <QueryBar
           handleGenreChange={this.handleGenreChange}
@@ -141,6 +143,7 @@ class App extends React.Component {
             parent_platforms={parent_platforms}
             stores={stores}
             clip={clip}
+            id={id}
             hideGameDetail={this.hideGameDetail}
           />
         )}

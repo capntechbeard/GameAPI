@@ -87,7 +87,6 @@ export const convertToPlatformIcon = slug => {
 };
 
 export const convertToStoreIcon = (slug, url_en) => {
-  console.log(slug, url_en);
   if (slug === "xbox") {
     const url = url_en ? url_en : "https://www.xbox.com/en-US/microsoft-store";
     return (

@@ -27,15 +27,22 @@ export const GameListView = props => {
       onClick={onClick}
     >
       <div className="Inner-list-wrapper">
-        <div className="Game-list-header">
-          <h2>{name}</h2>
-          <div className="">{metacritic}</div>
-          {rating > 0 && <h3>{rating}</h3>}
+        <div className="Game-title">{name}</div>
+        <div className="Ratings">
+          {metacritic != null && (
+            <div className="Metacritic">
+              <div>{metacritic}</div>
+            </div>
+          )}
+          <div className="User-rating">
+            {rating > 0 && <div>User rating: {rating}</div>}
+          </div>
         </div>
+
         <br />
-        <h3>Platforms</h3>
+        <div className="Floating-title">Platforms</div>
         <div className="Platform-list">{platformNodes}</div>
-        <h3>Stores</h3>
+        <div className="Floating-title">Stores</div>
         <div className="Store-list">{storeNodes}</div>
         <p className="Release-date">Released: {released}</p>
       </div>

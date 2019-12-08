@@ -23,6 +23,18 @@ export const GameDetailView = props => {
     backgroundImage: "url(" + background_image + ")"
   };
 
+  const metaGreen = {
+    backgroundColor: "#6c3"
+  };
+  const metaYellow = {
+    backgroundColor: "#fc3"
+  };
+  const metaRed = {
+    backgroundColor: "#f00"
+  };
+
+  console.log(props.id);
+
   return (
     <div>
       <header className="App-header">
@@ -33,11 +45,26 @@ export const GameDetailView = props => {
                 <FontAwesomeIcon icon={faArrowLeft} />
               </b>
             </button>
-            <div className="Game-list-header">
-              <h2>{name}</h2>
-              <h3>{metacritic}</h3>
-              {rating > 0 && <h3>{rating}</h3>}
+
+            <div className="Game-title">{name}</div>
+            <div className="Ratings">
+              {metacritic != null && (
+                <div
+                  className="Metacritic"
+                  style={
+                    (metacritic >= 75 && metaGreen) ||
+                    (metacritic >= 50 && metaYellow) ||
+                    (metacritic >= 0 && metaGreen)
+                  }
+                >
+                  <div>{metacritic}</div>
+                </div>
+              )}
+              <div className="User-rating">
+                {rating > 0 && <div>User rating: {rating}</div>}
+              </div>
             </div>
+
             <div className="Platform-list">{platformNodes}</div>
             <div className="Store-list">{storeNodes}</div>
             <p className="Release-date">Released: {released}</p>
