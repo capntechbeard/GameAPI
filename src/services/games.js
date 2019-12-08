@@ -10,7 +10,7 @@ export const getGameDetail = async gameID => {
     var random = Math.floor(Math.random() * (+max - +min)) + +min;
     gameID = random.toString();
   }
-
+  console.log("games.js: ", gameID);
   const url = "https://api.rawg.io/api/games/" + gameID; //Random Result
   // const url = "https://api.rawg.io/api/games/3498"; //GTA5
   // const url = "https://api.rawg.io/api/games/3328"; //The Witcher 3

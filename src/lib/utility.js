@@ -191,7 +191,7 @@ export const createStoreNodes = stores => {
   ));
 };
 
-export const filterDuplicatePlatforms = platforms => {
+export const filterDuplicatePlatforms = (platforms = []) => {
   const filteredArray = [];
   for (let platform of platforms) {
     if (platform.platform.slug.indexOf("pc") >= 0) {
@@ -263,7 +263,7 @@ export const filterDuplicatePlatforms = platforms => {
   return filteredArray;
 };
 
-export const filterDuplicateStores = stores => {
+export const filterDuplicateStores = (stores = []) => {
   const filteredArray = [];
   for (let store of stores) {
     if (store.store.slug.indexOf("steam") >= 0) {

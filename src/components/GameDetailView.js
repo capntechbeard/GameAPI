@@ -54,7 +54,7 @@ export const GameDetailView = props => {
                   style={
                     (metacritic >= 75 && metaGreen) ||
                     (metacritic >= 50 && metaYellow) ||
-                    (metacritic >= 0 && metaGreen)
+                    (metacritic >= 0 && metaRed)
                   }
                 >
                   <div>{metacritic}</div>
@@ -72,7 +72,7 @@ export const GameDetailView = props => {
               className="Detail-description"
               dangerouslySetInnerHTML={{ __html: description }}
             />
-            <h3>Preview:</h3>
+            <div>Preview:</div>
             {clip && <video src={clip} controls />}
             <br />
             <div className="Detail-website">

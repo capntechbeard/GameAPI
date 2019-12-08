@@ -20,6 +20,16 @@ export const GameListView = props => {
   };
   const onClick = props.onClick;
 
+  const metaGreen = {
+    backgroundColor: "#6c3"
+  };
+  const metaYellow = {
+    backgroundColor: "#fc3"
+  };
+  const metaRed = {
+    backgroundColor: "#f00"
+  };
+
   return (
     <div
       className="Outer-list-wrapper"
@@ -30,7 +40,14 @@ export const GameListView = props => {
         <div className="Game-title">{name}</div>
         <div className="Ratings">
           {metacritic != null && (
-            <div className="Metacritic">
+            <div
+              className="Metacritic"
+              style={
+                (metacritic >= 75 && metaGreen) ||
+                (metacritic >= 50 && metaYellow) ||
+                (metacritic >= 0 && metaRed)
+              }
+            >
               <div>{metacritic}</div>
             </div>
           )}

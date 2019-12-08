@@ -24,7 +24,7 @@ a {
 }
 
 .List-nodes {
-  padding: 0 15%;
+  padding: 0 8px;
   color: white;
   display: flex;
   flex-wrap: wrap;
@@ -245,6 +245,7 @@ h4 {
   align-items: center;
   justify-content: center;
   text-shadow: black;
+  border-radius: 0.2em;
 }
 
 .User-rating {
