@@ -1,12 +1,8 @@
 import React from "react";
-import {
-  GameDetailView,
-  GameListView,
-  Navbar,
-  QueryBar
-} from "./components/index.js";
+import { GameDetailView, GameListView, Navbar } from "./components/index.js";
 import "./styles/App.css";
 import { getGameDetail, getGameList } from "./services/games.js";
+import backgroundTile from "./images/background.png";
 
 class App extends React.Component {
   constructor(props) {
@@ -120,7 +116,10 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div className="App">
+      <div
+        className="App"
+        style={{ backgroundImage: `url(${backgroundTile})` }}
+      >
         <Navbar
           onClickList={() => this.getGameList()}
           onClickRandom={() => this.getGameDetail()}

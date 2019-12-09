@@ -10,6 +10,9 @@ import {
   faAndroid
 } from "@fortawesome/free-brands-svg-icons";
 import { faDesktop } from "@fortawesome/free-solid-svg-icons";
+import epicGamesIcon from "../images/EpicGames.svg";
+import gogIcon from "../images/GOG.svg";
+import nintendoSwitchIcon from "../images/NintendoSwitch.svg";
 
 export const convertToPlatformIcon = slug => {
   if (slug === "xbox" || slug === "xbox-one" || slug === "xbox360") {
@@ -47,7 +50,7 @@ export const convertToPlatformIcon = slug => {
   ) {
     return (
       <span>
-        <img className="nintendoSwitchSpecial" src="/NintendoSwitch.svg" />
+        <img className="nintendoSwitchSpecial" src={nintendoSwitchIcon} />
         <span className="Icon-text">Switch</span>
       </span>
     );
@@ -120,7 +123,7 @@ export const convertToStoreIcon = (slug, url_en) => {
     const url = url_en ? url_en : "https://www.nintendo.com/games/switch/";
     return (
       <a href={url}>
-        <img className="nintendoSwitchSpecial" src="/NintendoSwitch.svg" />
+        <img className="nintendoSwitchSpecial" src={nintendoSwitchIcon} />
         <span className="Icon-text">Nintendo Store</span>
       </a>
     );
@@ -138,7 +141,7 @@ export const convertToStoreIcon = (slug, url_en) => {
     const url = url_en ? url_en : "https://www.gog.com/";
     return (
       <a href={url}>
-        <img className="gogSpecial" src="/GOG.svg" />
+        <img className="gogSpecial" src={gogIcon} />
         <span className="Icon-text">Good Old Games</span>
       </a>
     );
@@ -156,7 +159,7 @@ export const convertToStoreIcon = (slug, url_en) => {
     const url = url_en ? url_en : "https://www.epicgames.com/store/";
     return (
       <a href={url}>
-        <img className="epicGamesSpecial" src="/EpicGames.svg" />
+        <img className="epicGamesSpecial" src={epicGamesIcon} />
         <span className="Icon-text">Epic Game Store</span>
       </a>
     );
