@@ -1,21 +1,24 @@
 {
   "files": {
-    "main.css": "/GameAPI/static/css/main.6ce9ec6b.chunk.css",
-    "main.js": "/GameAPI/static/js/main.bcc719e1.chunk.js",
-    "main.js.map": "/GameAPI/static/js/main.bcc719e1.chunk.js.map",
+    "main.css": "/GameAPI/static/css/main.c5d79b90.chunk.css",
+    "main.js": "/GameAPI/static/js/main.7644b43b.chunk.js",
+    "main.js.map": "/GameAPI/static/js/main.7644b43b.chunk.js.map",
     "runtime-main.js": "/GameAPI/static/js/runtime-main.e3f43853.js",
     "runtime-main.js.map": "/GameAPI/static/js/runtime-main.e3f43853.js.map",
-    "static/js/2.2edee09e.chunk.js": "/GameAPI/static/js/2.2edee09e.chunk.js",
-    "static/js/2.2edee09e.chunk.js.map": "/GameAPI/static/js/2.2edee09e.chunk.js.map",
+    "static/js/2.c5a109ec.chunk.js": "/GameAPI/static/js/2.c5a109ec.chunk.js",
+    "static/js/2.c5a109ec.chunk.js.map": "/GameAPI/static/js/2.c5a109ec.chunk.js.map",
     "index.html": "/GameAPI/index.html",
-    "precache-manifest.909da46093950e04e76c8cb3985a9e86.js": "/GameAPI/precache-manifest.909da46093950e04e76c8cb3985a9e86.js",
+    "precache-manifest.d535473db726321b664d4e5c43988732.js": "/GameAPI/precache-manifest.d535473db726321b664d4e5c43988732.js",
     "service-worker.js": "/GameAPI/service-worker.js",
-    "static/css/main.6ce9ec6b.chunk.css.map": "/GameAPI/static/css/main.6ce9ec6b.chunk.css.map"
+    "static/css/main.c5d79b90.chunk.css.map": "/GameAPI/static/css/main.c5d79b90.chunk.css.map",
+    "static/media/EpicGames.svg": "/GameAPI/static/media/EpicGames.22f4b562.svg",
+    "static/media/GOG.svg": "/GameAPI/static/media/GOG.1be9a0de.svg",
+    "static/media/NintendoSwitch.svg": "/GameAPI/static/media/NintendoSwitch.71bbcb5d.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.e3f43853.js",
-    "static/js/2.2edee09e.chunk.js",
-    "static/css/main.6ce9ec6b.chunk.css",
-    "static/js/main.bcc719e1.chunk.js"
+    "static/js/2.c5a109ec.chunk.js",
+    "static/css/main.c5d79b90.chunk.css",
+    "static/js/main.7644b43b.chunk.js"
   ]
 }
