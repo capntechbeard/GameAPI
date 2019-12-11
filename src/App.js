@@ -19,6 +19,7 @@ class App extends React.Component {
     const data = await getGameDetail(gameID);
     const {
       name,
+      slug,
       id,
       description,
       metacritic,
@@ -27,12 +28,14 @@ class App extends React.Component {
       background_image,
       website,
       parent_platforms,
-      stores
+      stores,
+      redirect
     } = data;
     const clip = data.clip && data.clip.clip;
 
     this.setState({
       name,
+      slug,
       id,
       description,
       metacritic,
@@ -43,8 +46,13 @@ class App extends React.Component {
       parent_platforms,
       stores,
       clip,
+      redirect,
       showDetail: true
     });
+
+    if (redirect != null) {
+      getGameDetail(slug);
+    }
   };
 
   handleGenreChange = event => {
