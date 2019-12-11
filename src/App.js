@@ -12,6 +12,7 @@ class App extends React.Component {
     };
   }
   componentDidMount() {
+    document.body.style = `background-image: url(${backgroundTile})`;
     this.getGameList();
   }
 
@@ -51,7 +52,7 @@ class App extends React.Component {
     });
 
     if (redirect != null) {
-      getGameDetail(slug);
+      this.getGameDetail(slug);
     }
   };
 
@@ -124,14 +125,11 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div
-        className="App"
-        style={{ backgroundImage: `url(${backgroundTile})` }}
-      >
+      <div className="App">
         <Navbar
           onClickList={() => this.getGameList()}
           onClickRandom={() => this.getGameDetail()}
-          onClickMeh={() => this.getGameDetail(3256)}
+          onClickMeh={() => this.getGameDetail(331560)}
         />
         {/* <QueryBar
           handleGenreChange={this.handleGenreChange}

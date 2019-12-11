@@ -77,7 +77,11 @@ export const GameDetailView = props => {
             <br />
             <div className="Detail-website">
               <span>
-                Website: <a href={website}>{" " + website}</a>
+                {website != null && (
+                  <div>
+                    Website: <a href={website}>{" " + website}</a>
+                  </div>
+                )}
               </span>
             </div>
           </div>
