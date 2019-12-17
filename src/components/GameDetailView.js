@@ -48,7 +48,7 @@ export const GameDetailView = props => {
 
             <div className="Game-title">{name}</div>
             <div className="Ratings">
-              {metacritic != null && (
+              {!!metacritic && (
                 <div
                   className="Metacritic"
                   style={
@@ -60,30 +60,40 @@ export const GameDetailView = props => {
                   <div>{metacritic}</div>
                 </div>
               )}
-              <div className="User-rating">
-                {rating > 0 && <div>User rating: {rating}</div>}
-              </div>
+
+              {rating > 0 && (
+                <div className="User-rating">
+                  <div>User rating: {rating}</div>
+                </div>
+              )}
             </div>
 
             <div className="Platform-list">{platformNodes}</div>
             <div className="Store-list">{storeNodes}</div>
             <p className="Release-date">Released: {released}</p>
-            <div
-              className="Detail-description"
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
-            <div>Preview:</div>
-            {clip && <video src={clip} controls />}
+
+            {!!description && (
+              <div
+                className="Detail-description"
+                dangerouslySetInnerHTML={{ __html: description }}
+              />
+            )}
+
+            {!!clip && (
+              <div>
+                <p className="Release-date">Preview:</p>
+                {clip && <video src={clip} controls />}
+              </div>
+            )}
+
             <br />
-            <div className="Detail-website">
-              <span>
-                {website != null && (
-                  <div>
-                    Website: <a href={website}>{" " + website}</a>
-                  </div>
-                )}
-              </span>
-            </div>
+            {!!website && (
+              <div className="Detail-website">
+                <a href={website}>
+                  <div>Website: {" " + website}</div>
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </header>

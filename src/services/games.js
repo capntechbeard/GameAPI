@@ -4,8 +4,8 @@ export const getGameDetail = async gameID => {
   if (!gameID) {
     // var max = 364944; //Max results from RAWG.api
 
-    var min = 3000; //More useable range of data
-    var max = 3500; //Many games have missing values
+    var min = 1; //More useable range of data
+    var max = 35000; //Many games have missing values
 
     var random = Math.floor(Math.random() * (+max - +min)) + +min;
     gameID = random.toString();

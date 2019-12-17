@@ -97,9 +97,7 @@ pre {
 .Floating-title,
 .Game-title,
 .User-rating,
-.Release-date,
-.Detail-website span,
-.Detail-website span a {
+.Release-date {
   text-shadow: -1px -1px 2px black;
   font-weight: bold;
   text-decoration: none;
@@ -109,21 +107,6 @@ pre {
 
 .Game-title {
   font-size: 1.7em;
-}
-
-.Detail-website span {
-  padding: 4px;
-  border-radius: 3em;
-  background-color: black;
-  opacity: 0.8;
-}
-
-.Detail-website span a {
-  padding: 0 0 0 8px;
-}
-
-.Detail-website {
-  margin: 0.5em;
 }
 
 .Outer-list-wrapper .Icon-text {
@@ -191,10 +174,12 @@ h4 {
 .Store-list {
   display: flex;
   justify-content: space-evenly;
+  margin: 2px 0;
 }
 
 .platformIcon,
-.storeIcon {
+.storeIcon,
+.Detail-website {
   padding: 4px;
   min-height: 28px;
   min-width: 28px;
@@ -207,7 +192,8 @@ h4 {
 }
 
 .storeIcon a,
-.platformIcon {
+.platformIcon,
+.Detail-website a {
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -215,7 +201,7 @@ h4 {
 
 .platformIcon:hover,
 .storeIcon:hover,
-.Detail-website span:hover {
+.Detail-website:hover {
   opacity: 1;
 }
 
@@ -239,6 +225,7 @@ h4 {
 .Ratings {
   display: flex;
   justify-content: center;
+  margin: 4px 0;
 }
 
 .Metacritic {
